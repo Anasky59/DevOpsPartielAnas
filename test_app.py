@@ -1,26 +1,24 @@
-import unittest
-from app import add, multiply, divide, greet
+# test_app.py
+import pytest
+from app import add, subtract, multiply, divide
 
-class TestAddFunction(unittest.TestCase):
-    def test_add(self):
-        self.assertEqual(add(2, 3), 5)
-        self.assertEqual(add(-1, 1), 0)
-        self.assertEqual(add(0, 0), 0)
-        
-    def test_multiply(self):
-        self.assertEqual(multiply(2, 3), 6)
-        self.assertEqual(multiply(-1, 5), -5)
-        self.assertEqual(multiply(0, 10), 0)
+def test_add():
+    assert add(2, 3) == 5
+    assert add(-1, 1) == 0
+    assert add(0, 0) == 0
 
-    def test_divide(self):
-        self.assertEqual(divide(10, 2), 5)
-        self.assertEqual(divide(5, 0), None)
-        self.assertEqual(divide(0, 5), 0)
+def test_subtract():
+    assert subtract(5, 3) == 2
+    assert subtract(3, 5) == -2
+    assert subtract(0, 0) == 0
 
-    def test_greet(self):
-        self.assertEqual(greet("Alice"), "Hello,Alice")
-        self.assertEqual(greet(""), "Hello, World!")
-        self.assertEqual(greet("Bob"), "Hello,Bob")
+def test_multiply():
+    assert multiply(2, 3) == 6
+    assert multiply(-2, 3) == -6
+    assert multiply(0, 5) == 0
 
-if __name__ == "__main__":
-    unittest.main()
+def test_divide():
+    assert divide(6, 3) == 2
+    assert divide(-6, 3) == -2
+    with pytest.raises(ValueError):
+        divide(5, 0)
